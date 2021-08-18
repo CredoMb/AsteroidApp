@@ -5,9 +5,11 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.udacity.asteroidradar.Asteroid
 import com.udacity.asteroidradar.Constants
+import kotlinx.coroutines.Deferred
 import org.json.JSONObject
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.http.GET
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -89,6 +91,16 @@ private val moshi = Moshi.Builder()
 
 //neo/rest/v1/feed?start_date=...&api_key=
 
+// Deferred<NetworkVideoContainer>
+interface NearObjectService {
+
+    //val endPoint = "neo/rest/v1/feed?start_date=" +
+
+    // Will return the result in json format
+    @GET("devbytes.json")
+    fun getNearObjects(): String
+}
+
 /**
  * Main entry point for network access. Call like `Network.nearObjects.getPlaylist()`
  */
@@ -96,9 +108,9 @@ object Network {
     // Configure retrofit to parse JSON and use coroutines
     private val retrofit = Retrofit.Builder()
         .baseUrl("https://api.nasa.gov/")
-        .addConverterFactory(MoshiConverterFactory.create(moshi))
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
         .build()
 
+    // .addConverterFactory(MoshiConverterFactory.create(moshi))
     //val nearObjects = retrofit.create(DevbyteService::class.java)
 }
