@@ -87,7 +87,7 @@ private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
     .build()
 
-//neo/rest/v1/feed?start_date=...&api_key=XBPnbbUjscj2Mfn3gnEDQeSI5OFOsFdKdWP9Gcz6
+//neo/rest/v1/feed?start_date=...&api_key=
 
 /**
  * Main entry point for network access. Call like `Network.nearObjects.getPlaylist()`
