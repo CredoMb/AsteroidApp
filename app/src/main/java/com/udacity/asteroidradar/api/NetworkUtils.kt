@@ -71,7 +71,7 @@ private fun getNextSevenDaysFormattedDates(): ArrayList<String> {
     return formattedDateList
 }
 
-private fun getCurrentDateFormatted(): String {
+private  fun getCurrentDateFormatted(): String {
 
     val calendar = Calendar.getInstance()
     val currentTime = calendar.time
@@ -94,12 +94,23 @@ private val moshi = Moshi.Builder()
 // Deferred<NetworkVideoContainer>
 interface NearObjectService {
 
-    //val endPoint = "neo/rest/v1/feed?start_date=" +
+    val endPoint:String
+
 
     // Will return the result in json format
-    @GET("devbytes.json")
+    // How to get the current date ?  }
+    @GET("neo/rest/v1/feed?start_date=\$getCurrentDateFormatted()"
+            +"")
     fun getNearObjects(): String
 }
+
+// Service interface and network object
+// approach doesn't work
+
+
+// parseAsteroidsJsonResult(jsonResult: JSONObject)
+//
+
 
 /**
  * Main entry point for network access. Call like `Network.nearObjects.getPlaylist()`
