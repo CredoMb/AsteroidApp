@@ -7,9 +7,14 @@ import com.udacity.asteroidradar.Asteroid
 import com.udacity.asteroidradar.Constants
 import kotlinx.coroutines.Deferred
 import org.json.JSONObject
+import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
+import retrofit2.http.Query
+import retrofit2.http.Url
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -71,7 +76,7 @@ private fun getNextSevenDaysFormattedDates(): ArrayList<String> {
     return formattedDateList
 }
 
-private  fun getCurrentDateFormatted(): String {
+fun getCurrentDateFormatted(): String {
 
     val calendar = Calendar.getInstance()
     val currentTime = calendar.time
@@ -85,23 +90,25 @@ private  fun getCurrentDateFormatted(): String {
  * Build the Moshi object that Retrofit will be using, making sure to add the Kotlin adapter for
  * full Kotlin compatibility.
  */
+
+/*
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
-    .build()
+    .build()*/
+
 
 //neo/rest/v1/feed?start_date=...&api_key=
 
 // Deferred<NetworkVideoContainer>
 interface NearObjectService {
 
-    val endPoint:String
+    // There's a problem with this
+    // returned value !!
 
+    @GET("neo/rest/v1/feed?")
+    fun getNearObjects(@Query("start_date") date:String,@Query("api_key") key:String): Call<String>
 
-    // Will return the result in json format
-    // How to get the current date ?  }
-    @GET("neo/rest/v1/feed?start_date=\$getCurrentDateFormatted()"
-            +"")
-    fun getNearObjects(): String
+    //Constants.API_KEY
 }
 
 // Service interface and network object
@@ -119,9 +126,13 @@ object Network {
     // Configure retrofit to parse JSON and use coroutines
     private val retrofit = Retrofit.Builder()
         .baseUrl("https://api.nasa.gov/")
-        .addCallAdapterFactory(CoroutineCallAdapterFactory())
-        .build()
+            .addConverterFactory(ScalarsConverterFactory.create())
+            .build()
 
     // .addConverterFactory(MoshiConverterFactory.create(moshi))
-    //val nearObjects = retrofit.create(DevbyteService::class.java)
+    // Network.devbytes.getPlaylist().await() .addCallAdapterFactory(CoroutineCallAdapterFactory())
+    val nearObjects = retrofit.create(NearObjectService::class.java)
+
+    // Should I execute the method here
+    // such that I can use the "json" function ?
 }
