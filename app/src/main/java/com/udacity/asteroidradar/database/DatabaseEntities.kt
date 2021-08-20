@@ -4,7 +4,6 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.udacity.asteroidradar.Asteroid
 
-
 @Entity
 data class DatabaseAsteroid constructor(
     @PrimaryKey
@@ -14,6 +13,10 @@ data class DatabaseAsteroid constructor(
     val relativeVelocity: Double, val distanceFromEarth: Double,
     val isPotentiallyHazardous: Boolean
 )
+
+/**
+ * Convert database results as domain objects
+ */
 
 fun List<DatabaseAsteroid>.asDomainModel(): List<Asteroid> {
     return map {
@@ -26,5 +29,22 @@ fun List<DatabaseAsteroid>.asDomainModel(): List<Asteroid> {
             relativeVelocity = it.relativeVelocity,
             distanceFromEarth = it.distanceFromEarth,
             isPotentiallyHazardous = it.isPotentiallyHazardous)
+    }
+}
+
+/**
+ * Convert domain objects to database objects
+ */
+fun List<Asteroid>.asDatabaseModel(): List<DatabaseAsteroid> {
+    return map {
+        DatabaseAsteroid(
+                id = it.id,
+                codename = it.codename,
+                closeApproachDate = it.closeApproachDate,
+                absoluteMagnitude = it.absoluteMagnitude,
+                estimatedDiameter = it.estimatedDiameter,
+                relativeVelocity = it.relativeVelocity,
+                distanceFromEarth = it.distanceFromEarth,
+                isPotentiallyHazardous = it.isPotentiallyHazardous)
     }
 }

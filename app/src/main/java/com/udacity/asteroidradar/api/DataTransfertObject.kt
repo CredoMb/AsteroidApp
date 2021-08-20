@@ -8,6 +8,8 @@ data class NetworkAsteroidContainer(val asteroids: List<NetworkAsteroid>)
 
 /**
  * Represent a Asteroid from the API.
+ *
+ * I don't think I need this
  */
 @JsonClass(generateAdapter = true)
 data class NetworkAsteroid(
