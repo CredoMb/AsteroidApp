@@ -28,7 +28,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
      *
      * At the initialization, we will retrieve asteroid data
      * and convert it into a list of Asteroid object,
-     * then store it into the database
+     * then store it into the database.
      *
      * */
     init {

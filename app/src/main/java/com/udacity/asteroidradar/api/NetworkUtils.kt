@@ -108,9 +108,18 @@ interface NearObjectService {
     @GET("neo/rest/v1/feed?")
     fun getNearObjects(@Query("start_date") date:String,@Query("api_key") key:String): Call<String>
 
-    //Constants.API_KEY
 }
 
+interface ImgOfTheDayService {
+
+    // There's a problem with this
+    // returned value !!
+
+    @GET("planetary/apod?")
+    fun getImgOfTheDay(@Query("api_key") key:String): Call<String>
+
+    //Constants.API_KEY
+}
 // Service interface and network object
 // approach doesn't work
 

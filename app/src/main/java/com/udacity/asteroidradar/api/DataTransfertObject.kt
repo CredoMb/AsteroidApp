@@ -20,5 +20,18 @@ data class NetworkAsteroid(
     val kilometers_per_second: String,
     val astronomical: String)
 
+/**
+ * Represent a the Image of the day from the API.
+ *
+ */
+@JsonClass(generateAdapter = true)
+data class ImageOfTheDay(
+        val date: String,
+        val explanation: String,
+        val hdurl: String,
+        val media_type: String,
+        val service_version: String,
+        val title: String,
+        val url: String)
 // Do we build all the small objects ?
 // I think so
