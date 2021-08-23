@@ -24,6 +24,9 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     private val database = getDatabase(application)
     private val asteroidRepository = AsteroidRepository(database)
 
+    //
+    // private
+
     /**
      *
      * At the initialization, we will retrieve asteroid data
@@ -33,10 +36,16 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
      * */
     init {
         viewModelScope.launch {
+            // Get the list of asteroids and store it into the
+            // data base
             val asteroidJsonObject = JSONObject(asteroidRepository.getAsteroidData())
             val asteroidList = parseAsteroidsJsonResult(asteroidJsonObject)
-
             asteroidRepository.storeAsteroids(asteroidList)
+
+            // Fetch the image of the day and store it in a
+            // variable
+            val imgOfTheDay = asteroidRepository.getImgOfTheDay()
+            Log.i("sikama ",imgOfTheDay.hdurl)
         }
     }
 

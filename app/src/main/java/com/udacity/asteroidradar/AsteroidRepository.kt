@@ -32,6 +32,14 @@ class AsteroidRepository(private val database: AsteroidsDatabase) {
     }
 
     /**
+     * Fetches image of the day from the nasa api
+     * and returns a Json String.
+     * */
+    suspend fun getImgOfTheDay() = withContext(Dispatchers.IO) {
+        Network.imgOfTheDay.getImgOfTheDay(Constants.API_KEY).await()
+    }
+
+    /**
      * Store a list of asteroids in the offline cache.
      * Will be used right after fetching data from the api.
      *

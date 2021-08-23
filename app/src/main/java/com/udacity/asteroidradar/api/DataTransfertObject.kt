@@ -33,5 +33,3 @@ data class ImageOfTheDay(
         val service_version: String,
         val title: String,
         val url: String)
-// Do we build all the small objects ?
-// I think so

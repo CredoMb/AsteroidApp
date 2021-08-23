@@ -5,6 +5,7 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.udacity.asteroidradar.Asteroid
 import com.udacity.asteroidradar.Constants
+import com.udacity.asteroidradar.ImageOfTheDay
 import kotlinx.coroutines.Deferred
 import org.json.JSONObject
 import retrofit2.Call
@@ -111,22 +112,17 @@ interface NearObjectService {
 }
 
 interface ImgOfTheDayService {
-
-    // There's a problem with this
-    // returned value !!
-
     @GET("planetary/apod?")
-    fun getImgOfTheDay(@Query("api_key") key:String): Call<String>
-
-    //Constants.API_KEY
+    fun getImgOfTheDay(@Query("api_key") key:String): Deferred<ImageOfTheDay>
 }
-// Service interface and network object
-// approach doesn't work
 
-
-// parseAsteroidsJsonResult(jsonResult: JSONObject)
-//
-
+/**
+ * Build the Moshi object that Retrofit will be using, making sure to add the Kotlin adapter for
+ * full Kotlin compatibility.
+ */
+private val moshi = Moshi.Builder()
+        .add(KotlinJsonAdapterFactory())
+        .build()
 
 /**
  * Main entry point for network access. Call like `Network.nearObjects.getPlaylist()`
@@ -136,12 +132,10 @@ object Network {
     private val retrofit = Retrofit.Builder()
         .baseUrl("https://api.nasa.gov/")
             .addConverterFactory(ScalarsConverterFactory.create())
+            .addConverterFactory(MoshiConverterFactory.create(moshi))
+            .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .build()
 
-    // .addConverterFactory(MoshiConverterFactory.create(moshi))
-    // Network.devbytes.getPlaylist().await() .addCallAdapterFactory(CoroutineCallAdapterFactory())
     val nearObjects = retrofit.create(NearObjectService::class.java)
-
-    // Should I execute the method here
-    // such that I can use the "json" function ?
+    val imgOfTheDay = retrofit.create(ImgOfTheDayService::class.java)
 }
