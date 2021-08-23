@@ -35,7 +35,7 @@ fun List<DatabaseAsteroid>.asDomainModel(): List<Asteroid> {
 /**
  * Convert domain objects to database objects
  */
-fun List<Asteroid>.asDatabaseModel(): List<DatabaseAsteroid> {
+fun List<Asteroid>.asDatabaseModel(): Array<DatabaseAsteroid> {
     return map {
         DatabaseAsteroid(
                 id = it.id,
@@ -46,5 +46,5 @@ fun List<Asteroid>.asDatabaseModel(): List<DatabaseAsteroid> {
                 relativeVelocity = it.relativeVelocity,
                 distanceFromEarth = it.distanceFromEarth,
                 isPotentiallyHazardous = it.isPotentiallyHazardous)
-    }
+    }.toTypedArray()
 }

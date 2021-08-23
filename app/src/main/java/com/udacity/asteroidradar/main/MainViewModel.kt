@@ -35,15 +35,28 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         viewModelScope.launch {
             val asteroidJsonObject = JSONObject(asteroidRepository.getAsteroidData())
             val asteroidList = parseAsteroidsJsonResult(asteroidJsonObject)
+
             asteroidRepository.storeAsteroids(asteroidList)
         }
     }
 
+    /**
+     *  Get asteroids from the database and
+     *  store it in this variable
+     *
+     *  */
     val asteroids  = asteroidRepository.asteroids
 
     /**
-     * Will make the network request in a
-     * background thread.
-     * */
-
+     * Factory for constructing MainViewModel with parameter
+     */
+    class Factory(val app: Application) : ViewModelProvider.Factory {
+        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+            if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
+                @Suppress("UNCHECKED_CAST")
+                return MainViewModel(app) as T
+            }
+            throw IllegalArgumentException("Unable to construct viewmodel")
+        }
+    }
 }

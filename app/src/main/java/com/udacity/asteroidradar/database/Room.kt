@@ -9,9 +9,10 @@ interface AsteroidDao {
     @Query("select * from databaseasteroid")
     fun getAsteroids(): LiveData<List<DatabaseAsteroid>>
 
-    //vararg
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(Asteroids: List<DatabaseAsteroid>)
+    fun insertAll(vararg asteroids: DatabaseAsteroid)
+
+
 }
 
 @Database(entities = [DatabaseAsteroid::class], version = 1)

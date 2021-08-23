@@ -1,5 +1,6 @@
 package com.udacity.asteroidradar
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.udacity.asteroidradar.api.Network
@@ -21,7 +22,6 @@ class AsteroidRepository(private val database: AsteroidsDatabase) {
                 it.asDomainModel()
             }
 
-
     /**
      * Fetches asteroid data from the nasa api
      * and returns a Json String.
@@ -40,10 +40,17 @@ class AsteroidRepository(private val database: AsteroidsDatabase) {
      * function is now safe to call from any thread including the Main thread.
      *
      * To actually load the asteroids for use, observe [asteroids]
+     *
      */
     suspend fun storeAsteroids(asteroids: ArrayList<Asteroid>) {
         withContext(Dispatchers.IO) {
-            database.asteroidDao.insertAll(asteroids.asDatabaseModel())
+            // The data base insert was supposed to get
+            // vararg, therefore the data base Model was
+            // suppose to return
+            database.asteroidDao.insertAll(*asteroids.asDatabaseModel())
+
+            // Or i need to delay the "get method"
+            //Log.i("List ea videu? ",test.size.toString())
         }
     }
 

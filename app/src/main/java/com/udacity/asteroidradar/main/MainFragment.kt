@@ -14,7 +14,10 @@ class MainFragment : Fragment() {
 
     // Here, the init is already performed
     private val viewModel: MainViewModel by lazy {
-        ViewModelProvider(this).get(MainViewModel::class.java)
+        val activity = requireNotNull(this.activity) {
+            "You can only access the viewModel after onViewCreated()"
+        }
+        ViewModelProvider(this,MainViewModel.Factory(activity.application)).get(MainViewModel::class.java)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -24,10 +27,10 @@ class MainFragment : Fragment() {
 
         binding.viewModel = viewModel
 
+        // Why is the size empty ?
 
-        viewModel.asteroidList.observe(viewLifecycleOwner, Observer<ArrayList<Asteroid>>{
-            asteroids -> Log.i("eee pegzé : ",asteroids.get(0).codename)
-
+        viewModel.asteroids.observe(viewLifecycleOwner, Observer<List<Asteroid>>{
+            asteroidList -> Log.i("eee pegzé : ",asteroidList.get(0).codename)
         })
 
         setHasOptionsMenu(true)
