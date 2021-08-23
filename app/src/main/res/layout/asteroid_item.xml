@@ -6,8 +6,8 @@
 
     <data>
         <variable
-            name="video"
-            type="com.udacity.asteroidradar.domain.Video" />
+            name="asteroid"
+            type="com.udacity.asteroidradar.Asteroid" />
     </data>
     <RelativeLayout
         android:layout_width="match_parent"

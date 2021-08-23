@@ -46,4 +46,17 @@ class MainFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return true
     }
+
+    /**
+     * Click listener for asteroids. By giving the block a name it helps a reader understand what it does.
+     *
+     */
+    class AsteroidClick(val block: (Asteroid) -> Unit) {
+        /**
+         * Called when a asteroid is clicked
+         *
+         * @param asteroid the asteroid that was clicked
+         */
+        fun onClick(asteroid: Asteroid) = block(asteroid)
+    }
 }
