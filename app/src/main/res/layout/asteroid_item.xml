@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="asteroid"
             type="com.udacity.asteroidradar.Asteroid" />
@@ -13,31 +14,32 @@
             name="asteroidCallback"
             type="com.udacity.asteroidradar.main.MainFragment.AsteroidClick" />
     </data>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/itemLayout_general_padding">
-    <TextView
-        android:id="@+id/asteroid_main_info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
+        <TextView
+            android:id="@+id/asteroid_main_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
 
-        android:textColor="@color/default_text_color"
-        tools:text="the best"
-        android:text="@{asteroid.codename}"
-        android:textSize="@dimen/main_text_size"/>
+            android:text="@{asteroid.codename}"
+            android:textColor="@color/default_text_color"
+            android:textSize="@dimen/main_text_size"
+            tools:text="the best" />
 
         <TextView
             android:id="@+id/date_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="shit, nigga"
-            android:textColor="@color/text_grey"
-            android:text="@{asteroid.closeApproachDate}"
             android:layout_below="@id/asteroid_main_info"
-            android:textSize="@dimen/date_text_size"/>
+            android:text="@{asteroid.closeApproachDate}"
+            android:textColor="@color/text_grey"
+            android:textSize="@dimen/date_text_size"
+            tools:text="shit, nigga" />
 
         <ImageView
             android:id="@+id/hazardous_icon"
@@ -46,7 +48,18 @@
             android:layout_alignParentEnd="true"
             android:layout_centerInParent="true"
             app:statusIcon="@{asteroid.potentiallyHazardous}"
-            tools:src="@mipmap/ic_launcher"/>
+            tools:src="@mipmap/ic_launcher" />
+
+        <!-- app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" -->
+        <View
+            android:id="@+id/clickableOverlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?attr/selectableItemBackground"
+            android:onClick="@{() -> asteroidCallback.onClick(asteroid)}" />
     </RelativeLayout>
 
 </layout>
