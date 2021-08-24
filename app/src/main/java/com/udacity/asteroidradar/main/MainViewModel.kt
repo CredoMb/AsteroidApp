@@ -27,6 +27,13 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     //
     // private
 
+    // Internally, we use a MutableLiveData to handle navigation to the selected asteroid
+    private val _navigateToSelectedAsteroid = MutableLiveData<Asteroid>()
+
+    // The external immutable LiveData for the navigation Asteroid
+    val navigateToSelectedAsteroid: LiveData<Asteroid>
+        get() = _navigateToSelectedAsteroid
+    
     /**
      *
      * At the initialization, we will retrieve asteroid data
@@ -55,6 +62,21 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
      *
      *  */
     val asteroids  = asteroidRepository.asteroids
+
+    /**
+     * When the asteroid is clicked, set the [_navigateToSelectedAsteroid] [MutableLiveData]
+     * @param asteroid The [Asteroid] that was clicked on.
+     */
+    fun displayAsteroidDetails(asteroid: Asteroid) {
+        _navigateToSelectedAsteroid.value = asteroid
+    }
+
+    /**
+     * After the navigation has taken place, make sure navigateToSelectedAsteroid is set to null
+     */
+    fun displayAsteroidDetailsComplete() {
+        _navigateToSelectedAsteroid.value = null
+    }
 
     /**
      * Factory for constructing MainViewModel with parameter

@@ -5,9 +5,13 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.Toast
+import android.widget.Toast.LENGTH_LONG
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.udacity.asteroidradar.Asteroid
@@ -56,10 +60,13 @@ class MainFragment : Fragment() {
 
         viewModelAdapter = AsteroidAdapter(AsteroidClick {
             // When a video is clicked this block or lambda will be called by DevByteAdapter
-
+            viewModel.displayAsteroidDetails(it)
             // context is not around, we can safely discard this click since the Fragment is no
-            // longer on the screen
-            /*val packageManager = context?.packageManager ?: return@VideoClick
+            // longer on the screenthis.
+            /*findNavController().navigate(MainFragmentDirections.actionShowDetail(it))
+
+            Toast.makeText(context,"Simba",LENGTH_LONG).show()
+            val packageManager = context?.packageManager ?: return@VideoClick
 
             // Try to generate a direct intent to the YouTube app
             var intent = Intent(Intent.ACTION_VIEW, it.launchUri)
@@ -67,8 +74,14 @@ class MainFragment : Fragment() {
                 // YouTube app isn't found, use the web url
                 intent = Intent(Intent.ACTION_VIEW, Uri.parse(it.url))
             }*/
-
             //startActivity(intent)
+        })
+
+        viewModel.navigateToSelectedAsteroid.observe(viewLifecycleOwner,{
+            if(null !=it) {
+                this.findNavController().navigate(MainFragmentDirections.actionShowDetail(it))
+                viewModel.displayAsteroidDetailsComplete()
+            }
         })
 
         binding.root.findViewById<RecyclerView>(R.id.asteroid_recycler).apply {
