@@ -8,6 +8,7 @@ import com.google.gson.Gson
 import com.udacity.asteroidradar.Asteroid
 import com.udacity.asteroidradar.AsteroidRepository
 import com.udacity.asteroidradar.Constants
+import com.udacity.asteroidradar.ImageOfTheDay
 import com.udacity.asteroidradar.api.Network
 import com.udacity.asteroidradar.api.getCurrentDateFormatted
 import com.udacity.asteroidradar.api.parseAsteroidsJsonResult
@@ -33,7 +34,12 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     // The external immutable LiveData for the navigation Asteroid
     val navigateToSelectedAsteroid: LiveData<Asteroid>
         get() = _navigateToSelectedAsteroid
-    
+
+    val _imgOfTheDay = MutableLiveData<ImageOfTheDay>()
+
+    val imgOfTheDay: LiveData<ImageOfTheDay>
+        get() = _imgOfTheDay
+
     /**
      *
      * At the initialization, we will retrieve asteroid data
@@ -50,9 +56,9 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             asteroidRepository.storeAsteroids(asteroidList)
 
             // Fetch the image of the day and store it in a
-            // variable
-            val imgOfTheDay = asteroidRepository.getImgOfTheDay()
-            Log.i("sikama ",imgOfTheDay.hdurl)
+            // livedata variable
+            _imgOfTheDay.value = asteroidRepository.getImgOfTheDay()
+            //Log.i("sikama ",imgOfTheDay.hdurl)
         }
     }
 
