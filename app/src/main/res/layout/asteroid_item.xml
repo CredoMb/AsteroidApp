@@ -43,6 +43,7 @@
             android:layout_height="22dp"
             android:layout_alignParentEnd="true"
             android:layout_centerInParent="true"
+            android:contentDescription="Hazardous Icon"
             app:statusIcon="@{asteroid.potentiallyHazardous}"
             tools:src="@mipmap/ic_launcher" />
 

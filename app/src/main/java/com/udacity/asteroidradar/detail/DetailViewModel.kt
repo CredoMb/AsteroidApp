@@ -2,39 +2,33 @@ package com.udacity.asteroidradar.detail
 
 import android.app.Application
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
+import androidx.lifecycle.*
 import com.udacity.asteroidradar.Asteroid
 import com.udacity.asteroidradar.R
 
-class DetailViewModel(asteroid: Asteroid, app: Application) : AndroidViewModel(app) {
-    /*
-    private val _selectedAsteroid = MutableLiveData<Asteroid>()
+class DetailViewModel(isHazardous: Boolean) : ViewModel() {
 
-    // The external LiveData for the SelectedAsteroid
-    val selectedAsteroid: LiveData<Asteroid>
-        get() = _selectedAsteroid
+    private val _hazardousStatus = MutableLiveData<Boolean>()
 
-    // Initialize the _selectedAsteroid MutableLiveData
+    // The external LiveData for the hazardousStatus
+    val hazardousStatus: LiveData<Boolean>
+        get() = _hazardousStatus
+
+    // Initialize the _hazardousStatus MutableLiveData.
     init {
-        _selectedAsteroid.value = asteroid
+        _hazardousStatus.value = isHazardous
     }
 
-    val displayAsteroidImg = Transformations.map(_selectedAsteroid) {
-        /*app.applicationContext.getDrawable(
-                when(it.isPotentiallyHazardous){
-                    true -> R.drawable.asteroid_hazardous
-                    false -> R.drawable.asteroid_safe
-                }
-        )*/
-        ContextCompat.getDrawable(app,
-                when (it.isPotentiallyHazardous) {
-                    true -> R.drawable.asteroid_safe
-                    false -> R.drawable.asteroid_safe
-                }
-        )
-    }
-    */
+    /**
+     * Returns the correct description based on
+     * wether the asteroid is hazardous or not.
+     * The returned value will be used as the
+     * the content description of the detail icon
+     *
+     * */
+    fun iconDescription()=
+        when (hazardousStatus.value!!) {
+            true ->"Icon for potentially hazardous asteroid"
+            false ->"Icon for non hazardous asteroid"
+        }
 }

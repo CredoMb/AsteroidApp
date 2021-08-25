@@ -9,6 +9,7 @@ import com.udacity.asteroidradar.PictureOfDay
 import com.udacity.asteroidradar.api.getCurrentDateFormatted
 import com.udacity.asteroidradar.api.parseAsteroidsJsonResult
 import com.udacity.asteroidradar.database.getDatabase
+import com.udacity.asteroidradar.util.Constants
 import kotlinx.coroutines.launch
 import org.json.JSONObject
 
@@ -57,7 +58,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             _imgOfTheDay.value = asteroidRepository.getImgOfTheDay()
 
             if (imgOfTheDay.value!!.mediaType.equals("video")){
-                _imgOfTheDay.value = PictureOfDay("","",null)
+                _imgOfTheDay.value = PictureOfDay("",Constants.NO_IMG_TO_DISPLAY,null)
                 _isVideo.value = true
             }
         }

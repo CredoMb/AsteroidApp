@@ -39,7 +39,6 @@ fun bindImage(imgView: ImageView, imgUrl: String?) {
                         .placeholder(R.drawable.loading_animation)
                         .error(R.drawable.ic_broken_image))
                 .into(imgView)
-        // placeholder_picture_of_day
     }
 }
 
