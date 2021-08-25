@@ -18,7 +18,7 @@ class AsteroidRepository(private val database: AsteroidsDatabase) {
      * to be shown on the main fragment.
      */
     val asteroids: LiveData<List<Asteroid>> =
-            Transformations.map(database.asteroidDao.getAsteroids()) {
+            Transformations.map(database.asteroidDao.getAsteroids(getCurrentDateFormatted())) {
                 it.asDomainModel()
             }
 

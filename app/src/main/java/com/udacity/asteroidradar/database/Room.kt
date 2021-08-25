@@ -7,17 +7,14 @@ import com.udacity.asteroidradar.api.getCurrentDateFormatted
 
 @Dao
 interface AsteroidDao {
-    //, closeApproachDate > "+getCurrentDateFormatted()
-    @Query("select * from databaseasteroid ORDER BY " +
+
+    @Query("select * from databaseasteroid WHERE closeApproachDate >= :today ORDER BY " +
             " closeApproachDate ASC")
-    fun getAsteroids(): LiveData<List<DatabaseAsteroid>>
+    fun getAsteroids(today: String): LiveData<List<DatabaseAsteroid>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(vararg asteroids: DatabaseAsteroid)
 
-    // From today
-    // sort them
-    // database query
 }
 
 @Database(entities = [DatabaseAsteroid::class], version = 1)
