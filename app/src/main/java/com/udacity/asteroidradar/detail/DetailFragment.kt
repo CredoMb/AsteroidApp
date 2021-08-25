@@ -23,7 +23,7 @@ class DetailFragment : Fragment() {
 
         val viewModel = DetailViewModel(asteroid)
 
-        binding.asteroid = asteroid
+        //binding.asteroid = asteroid
         binding.viewModel = viewModel
 
         binding.helpButton.setOnClickListener {
