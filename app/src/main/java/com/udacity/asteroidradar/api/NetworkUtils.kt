@@ -5,7 +5,6 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.udacity.asteroidradar.Asteroid
 import com.udacity.asteroidradar.util.Constants
-import com.udacity.asteroidradar.ImageOfTheDay
 import com.udacity.asteroidradar.PictureOfDay
 import kotlinx.coroutines.Deferred
 import org.json.JSONObject
@@ -19,7 +18,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-// Get the result from the json
+// Get a jsonObject
 // and return a list of asteroids
 fun parseAsteroidsJsonResult(jsonResult: JSONObject): ArrayList<Asteroid> {
     val nearEarthObjectsJson = jsonResult.getJSONObject("near_earth_objects")
