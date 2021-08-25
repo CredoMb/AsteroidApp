@@ -1,10 +1,11 @@
 package com.udacity.asteroidradar.main
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.*
 import com.udacity.asteroidradar.Asteroid
 import com.udacity.asteroidradar.AsteroidRepository
-import com.udacity.asteroidradar.ImageOfTheDay
+import com.udacity.asteroidradar.PictureOfDay
 import com.udacity.asteroidradar.api.parseAsteroidsJsonResult
 import com.udacity.asteroidradar.database.getDatabase
 import kotlinx.coroutines.launch
@@ -25,9 +26,9 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     val navigateToSelectedAsteroid: LiveData<Asteroid>
         get() = _navigateToSelectedAsteroid
 
-    val _imgOfTheDay = MutableLiveData<ImageOfTheDay>()
+    val _imgOfTheDay = MutableLiveData<PictureOfDay>()
 
-    val imgOfTheDay: LiveData<ImageOfTheDay>
+    val imgOfTheDay: LiveData<PictureOfDay>
         get() = _imgOfTheDay
 
     /**
@@ -46,9 +47,14 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             asteroidRepository.storeAsteroids(asteroidList)
 
             // Fetch the image of the day and store it in a
-            // livedata variable
+            // livedata variable. If the image of the day is a video,
+            // turn the live data to null
             _imgOfTheDay.value = asteroidRepository.getImgOfTheDay()
-            //Log.i("sikama ",imgOfTheDay.hdurl)
+
+            if (imgOfTheDay.value!!.mediaType.equals("video"))
+                _imgOfTheDay.value = PictureOfDay("","","app\\src\\main\\res\\drawable\\placeholder_picture_of_day.xml")
+
+            //
         }
     }
 

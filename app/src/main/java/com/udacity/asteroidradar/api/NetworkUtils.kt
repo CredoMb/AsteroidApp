@@ -6,6 +6,7 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.udacity.asteroidradar.Asteroid
 import com.udacity.asteroidradar.util.Constants
 import com.udacity.asteroidradar.ImageOfTheDay
+import com.udacity.asteroidradar.PictureOfDay
 import kotlinx.coroutines.Deferred
 import org.json.JSONObject
 import retrofit2.Call
@@ -98,7 +99,7 @@ interface NearObjectService {
  */
 interface ImgOfTheDayService {
     @GET("planetary/apod?")
-    fun getImgOfTheDay(@Query("api_key") key: String): Deferred<ImageOfTheDay>
+    fun getImgOfTheDay(@Query("api_key") key: String): Deferred<PictureOfDay>
 }
 
 /**
@@ -110,12 +111,12 @@ private val moshi = Moshi.Builder()
         .build()
 
 /**
- * Main entry point for network access. Call like `Network.nearObjects.getPlaylist()`
+ * Main entry point for network access. Call like `Network.nearObjects.getPlaylist()` "https://api.nasa.gov/"
  */
 object Network {
 
     private val retrofit = Retrofit.Builder()
-            .baseUrl("https://api.nasa.gov/")
+            .baseUrl(Constants.BASE_URL)
             .addConverterFactory(ScalarsConverterFactory.create())
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .addCallAdapterFactory(CoroutineCallAdapterFactory())

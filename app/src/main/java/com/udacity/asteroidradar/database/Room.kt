@@ -3,10 +3,13 @@ package com.udacity.asteroidradar.database
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.udacity.asteroidradar.api.getCurrentDateFormatted
 
 @Dao
 interface AsteroidDao {
-    @Query("select * from databaseasteroid ")
+    //, closeApproachDate > "+getCurrentDateFormatted()
+    @Query("select * from databaseasteroid ORDER BY " +
+            " closeApproachDate ASC")
     fun getAsteroids(): LiveData<List<DatabaseAsteroid>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

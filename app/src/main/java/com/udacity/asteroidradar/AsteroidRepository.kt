@@ -57,8 +57,6 @@ class AsteroidRepository(private val database: AsteroidsDatabase) {
             // suppose to return
             database.asteroidDao.insertAll(*asteroids.asDatabaseModel())
 
-            // Or i need to delay the "get method"
-            //Log.i("List ea videu? ",test.size.toString())
         }
     }
 
