@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.udacity.asteroidradar.Asteroid
 import com.udacity.asteroidradar.R
 import com.udacity.asteroidradar.databinding.AsteroidItemBinding
-import com.udacity.asteroidradar.main.MainFragment.AsteroidClick
+//import com.udacity.asteroidradar.main.MainFragment.AsteroidClick
 
-class AsteroidAdapter(val callback: AsteroidClick) : RecyclerView.Adapter<AsteroidViewHolder>() {
+class AsteroidAdapter(val onClickListener: AsteroidClick) : RecyclerView.Adapter<AsteroidViewHolder>() {
 
     /**
      * The asteroids that our Adapter will show
@@ -46,11 +46,29 @@ class AsteroidAdapter(val callback: AsteroidClick) : RecyclerView.Adapter<Astero
      * position.
      */
     override fun onBindViewHolder(holder: AsteroidViewHolder, position: Int) {
+        // holder.itemView.setonc
+        val asteroid = asteroids[position]
         holder.viewDataBinding.also {
-            it.asteroid = asteroids[position]
-            it.asteroidCallback = callback
+            it.asteroid = asteroid
+        }
+
+        holder.itemView.setOnClickListener {
+            onClickListener.onClick(asteroid)
         }
     }
+}
+
+/**
+ * Click listener for asteroids. By giving the block a name it helps a reader understand what it does.
+ *
+ */
+class AsteroidClick(val block: (Asteroid) -> Unit) {
+    /**
+     * Called when a asteroid is clicked
+     *
+     * @param asteroid the asteroid that was clicked
+     */
+    fun onClick(asteroid: Asteroid) = block(asteroid)
 }
 
 /**
@@ -62,4 +80,5 @@ class AsteroidViewHolder(val viewDataBinding: AsteroidItemBinding) :
         @LayoutRes
         val LAYOUT = R.layout.asteroid_item
     }
+
 }

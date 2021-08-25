@@ -10,9 +10,6 @@
             name="asteroid"
             type="com.udacity.asteroidradar.Asteroid" />
 
-        <variable
-            name="asteroidCallback"
-            type="com.udacity.asteroidradar.main.MainFragment.AsteroidClick" />
     </data>
 
     <RelativeLayout
@@ -25,7 +22,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-
             android:text="@{asteroid.codename}"
             android:textColor="@color/default_text_color"
             android:textSize="@dimen/main_text_size"
@@ -50,16 +46,5 @@
             app:statusIcon="@{asteroid.potentiallyHazardous}"
             tools:src="@mipmap/ic_launcher" />
 
-        <!-- app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" -->
-        <View
-            android:id="@+id/clickableOverlay"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="?attr/selectableItemBackground"
-            android:onClick="@{() -> asteroidCallback.onClick(asteroid)}" />
     </RelativeLayout>
-
 </layout>
