@@ -27,11 +27,6 @@ class DetailFragment : Fragment() {
             displayAstronomicalUnitExplanationDialog()
         }
 
-        /*
-        val viewModelFactory = DetailViewModelFactory(asteroid, application)
-        binding.viewModel = ViewModelProvider(
-                this, viewModelFactory).get(DetailViewModel::class.java) */
-
         return binding.root
     }
 

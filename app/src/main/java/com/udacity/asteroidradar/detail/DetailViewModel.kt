@@ -10,7 +10,7 @@ import com.udacity.asteroidradar.Asteroid
 import com.udacity.asteroidradar.R
 
 class DetailViewModel(asteroid: Asteroid, app: Application) : AndroidViewModel(app) {
-
+    /*
     private val _selectedAsteroid = MutableLiveData<Asteroid>()
 
     // The external LiveData for the SelectedAsteroid
@@ -36,4 +36,5 @@ class DetailViewModel(asteroid: Asteroid, app: Application) : AndroidViewModel(a
                 }
         )
     }
+    */
 }

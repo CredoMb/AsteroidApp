@@ -4,7 +4,7 @@ import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterF
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.udacity.asteroidradar.Asteroid
-import com.udacity.asteroidradar.Constants
+import com.udacity.asteroidradar.util.Constants
 import com.udacity.asteroidradar.ImageOfTheDay
 import kotlinx.coroutines.Deferred
 import org.json.JSONObject
@@ -13,9 +13,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.http.GET
-import retrofit2.http.Path
 import retrofit2.http.Query
-import retrofit2.http.Url
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
