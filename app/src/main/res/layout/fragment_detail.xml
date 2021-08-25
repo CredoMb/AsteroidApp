@@ -60,7 +60,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:text="@{asteroid.closeApproachDate}"
+                        android:text="@{viewModel.currentAsteroid.closeApproachDate}"
                         android:textColor="@color/default_text_color"
                         tools:text="2020-02-01" />
                 </LinearLayout>
@@ -90,7 +90,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
                             android:textColor="@color/default_text_color"
-                            app:astronomicalUnitText="@{asteroid.absoluteMagnitude}"
+                            app:astronomicalUnitText="@{viewModel.currentAsteroid.absoluteMagnitude}"
                             tools:text="25.126 au" />
                     </LinearLayout>
 
@@ -116,7 +116,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:textColor="@color/default_text_color"
-                    app:kmUnitText="@{asteroid.estimatedDiameter}"
+                    app:kmUnitText="@{viewModel.currentAsteroid.estimatedDiameter}"
                     tools:text="0.82 km" />
 
                 <TextView
@@ -132,7 +132,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:textColor="@color/default_text_color"
-                    app:velocityText="@{asteroid.relativeVelocity}"
+                    app:velocityText="@{viewModel.currentAsteroid.relativeVelocity}"
                     tools:text="11.9 km/s" />
 
                 <TextView
@@ -148,7 +148,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:textColor="@color/default_text_color"
-                    app:astronomicalUnitText="@{asteroid.distanceFromEarth}"
+                    app:astronomicalUnitText="@{viewModel.currentAsteroid.distanceFromEarth}"
                     tools:text="0.0924 au" />
 
             </LinearLayout>
