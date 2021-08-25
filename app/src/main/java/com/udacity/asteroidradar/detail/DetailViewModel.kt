@@ -5,18 +5,19 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.*
 import com.udacity.asteroidradar.Asteroid
 import com.udacity.asteroidradar.R
+import com.udacity.asteroidradar.util.Constants
 
-class DetailViewModel(isHazardous: Boolean) : ViewModel() {
+class DetailViewModel(asteroid: Asteroid) : ViewModel() {
 
-    private val _hazardousStatus = MutableLiveData<Boolean>()
+    private val _currentAsteroid = MutableLiveData<Asteroid>()
 
     // The external LiveData for the hazardousStatus
-    val hazardousStatus: LiveData<Boolean>
-        get() = _hazardousStatus
+    val currentAsteroid: LiveData<Asteroid>
+        get() = _currentAsteroid
 
     // Initialize the _hazardousStatus MutableLiveData.
     init {
-        _hazardousStatus.value = isHazardous
+        _currentAsteroid.value = asteroid
     }
 
     /**
@@ -27,8 +28,8 @@ class DetailViewModel(isHazardous: Boolean) : ViewModel() {
      *
      * */
     fun iconDescription()=
-        when (hazardousStatus.value!!) {
-            true ->"Icon for potentially hazardous asteroid"
-            false ->"Icon for non hazardous asteroid"
+        when (currentAsteroid.value!!.isPotentiallyHazardous!!) {
+            true -> Constants.HAZARDOUS_DESCRIPTION
+            false -> Constants.NON_HAZARDOUS_DESCRIPTION
         }
 }

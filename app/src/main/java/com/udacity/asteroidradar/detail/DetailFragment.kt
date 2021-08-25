@@ -21,7 +21,7 @@ class DetailFragment : Fragment() {
 
         val asteroid = DetailFragmentArgs.fromBundle(requireArguments()).selectedAsteroid
 
-        val viewModel = DetailViewModel(asteroid.isPotentiallyHazardous)
+        val viewModel = DetailViewModel(asteroid)
 
         binding.asteroid = asteroid
         binding.viewModel = viewModel
