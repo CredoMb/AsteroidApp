@@ -1,6 +1,7 @@
 package com.udacity.asteroidradar
 
 import android.content.Context
+import android.util.Log
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.udacity.asteroidradar.api.parseAsteroidsJsonResult
@@ -31,6 +32,8 @@ class RefreshDataWorker(appContext: Context, params: WorkerParameters):
             val asteroidJsonObject = JSONObject(repository.getAsteroidData())
             val asteroidList = parseAsteroidsJsonResult(asteroidJsonObject)
             repository.storeAsteroids(asteroidList)
+
+            Log.i("Esimbi diii ","kalala")
 
             Result.success()
         } catch (e: HttpException) {
