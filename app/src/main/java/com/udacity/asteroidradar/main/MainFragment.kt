@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.*
 import android.widget.Toast
 import android.widget.Toast.LENGTH_LONG
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -55,7 +56,6 @@ class MainFragment : Fragment() {
 
         binding.viewModel = viewModel
 
-
         setHasOptionsMenu(true)
 
         viewModelAdapter = AsteroidAdapter(AsteroidClick {
@@ -88,6 +88,12 @@ class MainFragment : Fragment() {
             layoutManager = LinearLayoutManager(context)
             adapter = viewModelAdapter
         }
+
+        viewModel.isVideo.observe(viewLifecycleOwner,{
+            if(it == true){
+                binding.activityMainImageOfTheDay.setImageDrawable(resources.getDrawable(R.drawable.placeholder_picture_of_day))
+            }
+        })
 
         return binding.root
     }

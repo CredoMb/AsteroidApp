@@ -32,6 +32,10 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     val imgOfTheDay: LiveData<PictureOfDay>
         get() = _imgOfTheDay
 
+    val _isVideo = MutableLiveData<Boolean>(false)
+
+    val isVideo:LiveData<Boolean>
+            get() =_isVideo
     /**
      *
      * At the initialization, we will retrieve asteroid data
@@ -49,13 +53,13 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
             // Fetch the image of the day and store it in a
             // livedata variable. If the image of the day is a video,
-            // turn the live data to null
+            // turn the live data to an empty pictureOfDay object
             _imgOfTheDay.value = asteroidRepository.getImgOfTheDay()
 
-            if (imgOfTheDay.value!!.mediaType.equals("video"))
-                _imgOfTheDay.value = PictureOfDay("","","app\\src\\main\\res\\drawable\\placeholder_picture_of_day.xml")
-
-            //
+            if (imgOfTheDay.value!!.mediaType.equals("video")){
+                _imgOfTheDay.value = PictureOfDay("","",null)
+                _isVideo.value = true
+            }
         }
     }
 
