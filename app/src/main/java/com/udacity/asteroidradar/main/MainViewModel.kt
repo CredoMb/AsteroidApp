@@ -1,12 +1,10 @@
 package com.udacity.asteroidradar.main
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.*
 import com.udacity.asteroidradar.Asteroid
-import com.udacity.asteroidradar.AsteroidRepository
-import com.udacity.asteroidradar.PictureOfDay
-import com.udacity.asteroidradar.api.getCurrentDateFormatted
+import com.udacity.asteroidradar.repository.AsteroidRepository
+import com.udacity.asteroidradar.api.PictureOfDay
 import com.udacity.asteroidradar.api.parseAsteroidsJsonResult
 import com.udacity.asteroidradar.database.getDatabase
 import com.udacity.asteroidradar.util.Constants

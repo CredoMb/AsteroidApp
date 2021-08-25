@@ -1,9 +1,10 @@
-package com.udacity.asteroidradar
+package com.udacity.asteroidradar.work
 
 import android.content.Context
 import android.util.Log
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
+import com.udacity.asteroidradar.repository.AsteroidRepository
 import com.udacity.asteroidradar.api.parseAsteroidsJsonResult
 import com.udacity.asteroidradar.database.getDatabase
 import org.json.JSONObject
