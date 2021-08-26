@@ -3,7 +3,6 @@ package com.udacity.asteroidradar.database
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.udacity.asteroidradar.api.getCurrentDateFormatted
 
 @Dao
 interface AsteroidDao {

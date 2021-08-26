@@ -3,8 +3,8 @@ package com.udacity.asteroidradar.repository
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.udacity.asteroidradar.Asteroid
-import com.udacity.asteroidradar.api.Network
-import com.udacity.asteroidradar.api.getCurrentDateFormatted
+import com.udacity.asteroidradar.network.Network
+import com.udacity.asteroidradar.network.getCurrentDateFormatted
 import com.udacity.asteroidradar.database.AsteroidsDatabase
 import com.udacity.asteroidradar.database.asDatabaseModel
 import com.udacity.asteroidradar.database.asDomainModel

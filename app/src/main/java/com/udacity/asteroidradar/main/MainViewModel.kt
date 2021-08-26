@@ -4,8 +4,8 @@ import android.app.Application
 import androidx.lifecycle.*
 import com.udacity.asteroidradar.Asteroid
 import com.udacity.asteroidradar.repository.AsteroidRepository
-import com.udacity.asteroidradar.api.PictureOfDay
-import com.udacity.asteroidradar.api.parseAsteroidsJsonResult
+import com.udacity.asteroidradar.network.PictureOfDay
+import com.udacity.asteroidradar.network.parseAsteroidsJsonResult
 import com.udacity.asteroidradar.database.getDatabase
 import com.udacity.asteroidradar.util.Constants
 import kotlinx.coroutines.launch
