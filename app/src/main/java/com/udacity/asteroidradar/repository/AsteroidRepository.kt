@@ -53,9 +53,6 @@ class AsteroidRepository(private val database: AsteroidsDatabase) {
      */
     suspend fun storeAsteroids(asteroids: ArrayList<Asteroid>) {
         withContext(Dispatchers.IO) {
-            // The data base insert was supposed to get
-            // vararg, therefore the data base Model was
-            // suppose to return
             database.asteroidDao.insertAll(*asteroids.asDatabaseModel())
 
         }

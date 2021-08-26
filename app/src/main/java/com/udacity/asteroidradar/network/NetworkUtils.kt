@@ -17,8 +17,11 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-// Get a jsonObject
-// and return a list of asteroids
+/**
+ * Get a jsonObject
+ * and return a list of asteroids
+ *
+ * */
 fun parseAsteroidsJsonResult(jsonResult: JSONObject): ArrayList<Asteroid> {
     val nearEarthObjectsJson = jsonResult.getJSONObject("near_earth_objects")
 
@@ -109,7 +112,7 @@ private val moshi = Moshi.Builder()
         .build()
 
 /**
- * Main entry point for network access. Call like `Network.nearObjects.getPlaylist()` "https://api.nasa.gov/"
+ * Main entry point for network access.
  */
 object Network {
 

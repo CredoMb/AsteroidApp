@@ -21,7 +21,10 @@ import com.udacity.asteroidradar.databinding.FragmentMainBinding
 
 class MainFragment : Fragment() {
 
-    // Here, the init is already performed
+    /**
+     * The view model initialization
+     * will occur after the onViewCreated
+     * */
     private val viewModel: MainViewModel by lazy {
         val activity = requireNotNull(this.activity) {
             "You can only access the viewModel after onViewCreated()"
@@ -59,31 +62,22 @@ class MainFragment : Fragment() {
         setHasOptionsMenu(true)
 
         viewModelAdapter = AsteroidAdapter(AsteroidClick {
-            // When a video is clicked this block or lambda will be called by DevByteAdapter
+            // When a video is clicked this block or lambda will be called by AsteroidAdapter
             viewModel.displayAsteroidDetails(it)
-            // context is not around, we can safely discard this click since the Fragment is no
-            // longer on the screenthis.
-            /*findNavController().navigate(MainFragmentDirections.actionShowDetail(it))
-
-            Toast.makeText(context,"Simba",LENGTH_LONG).show()
-            val packageManager = context?.packageManager ?: return@VideoClick
-
-            // Try to generate a direct intent to the YouTube app
-            var intent = Intent(Intent.ACTION_VIEW, it.launchUri)
-            if(intent.resolveActivity(packageManager) == null) {
-                // YouTube app isn't found, use the web url
-                intent = Intent(Intent.ACTION_VIEW, Uri.parse(it.url))
-            }*/
-            //startActivity(intent)
         })
 
+        // If the variable "navigateToSelectedAsteroid"
+        // is no longer null, it means that the user
+        // want to navigate to the detail screen.
         viewModel.navigateToSelectedAsteroid.observe(viewLifecycleOwner,{
             if(null !=it) {
+                // The following block help us go from the current fragment to the detail fragment
                 this.findNavController().navigate(MainFragmentDirections.actionShowDetail(it))
                 viewModel.displayAsteroidDetailsComplete()
             }
         })
 
+        // Set the manager and adapter of the recycler view
         binding.root.findViewById<RecyclerView>(R.id.asteroid_recycler).apply {
             layoutManager = LinearLayoutManager(context)
             adapter = viewModelAdapter

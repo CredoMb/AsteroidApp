@@ -3,4 +3,5 @@
     <dimen name="date_text_size">12sp</dimen>
     <dimen name="main_text_size">16sp</dimen>
     <dimen name="itemLayout_general_padding">8dp</dimen>
+    <dimen name="property_text_size">16sp</dimen>
 </resources>

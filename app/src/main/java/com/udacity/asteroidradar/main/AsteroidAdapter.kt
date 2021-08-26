@@ -59,7 +59,10 @@ class AsteroidAdapter(val onClickListener: AsteroidClick) : RecyclerView.Adapter
 }
 
 /**
- * Click listener for asteroids. By giving the block a name it helps a reader understand what it does.
+ * Click listener for the recycler view.
+ *
+ * By giving the block a name, we are helping
+ * the reader understands what it does.
  *
  */
 class AsteroidClick(val block: (Asteroid) -> Unit) {

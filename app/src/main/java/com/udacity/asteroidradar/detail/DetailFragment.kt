@@ -16,7 +16,7 @@ class DetailFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        val application = requireNotNull(activity).application
+        //val application = requireNotNull(activity).application
         val binding = FragmentDetailBinding.inflate(inflater)
         binding.lifecycleOwner = this
 
@@ -36,6 +36,11 @@ class DetailFragment : Fragment() {
         return binding.root
     }
 
+    /**
+     * Create a dialog to display the
+     * meaning of astronomical unit
+     *
+     * */
     private fun displayAstronomicalUnitExplanationDialog() {
         val builder = AlertDialog.Builder(requireActivity())
             .setMessage(getString(R.string.astronomica_unit_explanation))

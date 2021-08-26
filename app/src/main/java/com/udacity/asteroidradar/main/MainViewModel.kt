@@ -16,9 +16,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     private val database = getDatabase(application)
     private val asteroidRepository = AsteroidRepository(database)
 
-    //
-    // private
-
     // Internally, we use a MutableLiveData to handle navigation to the selected asteroid
     private val _navigateToSelectedAsteroid = MutableLiveData<Asteroid>()
 
@@ -26,13 +23,14 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     val navigateToSelectedAsteroid: LiveData<Asteroid>
         get() = _navigateToSelectedAsteroid
 
+    // The image object fetched from the api
     val _imgOfTheDay = MutableLiveData<PictureOfDay>()
-
     val imgOfTheDay: LiveData<PictureOfDay>
         get() = _imgOfTheDay
 
+    // Help us know wether the media of the day is a video
+    // or an image. We only display the media if it's an image
     val _isVideo = MutableLiveData<Boolean>(false)
-
     val isVideo:LiveData<Boolean>
             get() =_isVideo
     /**
