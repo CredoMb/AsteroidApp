@@ -1,9 +1,14 @@
-# Purpose of this Folder
+# Asteroid App
 
-This folder should contain the scaffolded project files to get a student started on their project. This repo will be added to the Classroom for students to use, so please do not have any solutions in this folder.
+This app fetches data from the NASA API to display a list of asteroids close to our planet.
+By clicking on a given asteroid, the user can view detailed information about it, such as the level of threat it represents for our planet.
 
-## Note: Android Kotlin Gradle Update
-Use the updated Gradle version in the `~/gradle/wrapper/gradle-wrapper.properties` file:
-```
-distributionUrl = https\://services.gradle.org/distributions/gradle-6.1.1-all.zip
-```
+## Prerequisites 
+
+* Android SDK v30
+* Android Build Tools v29.0.3
+
+## Contributors
+A basic starter code was provided by Udacity, as this project was part of the Udacity curriculum on Android App. https://github.com/udacity/nd940-android-kotlin-c2-starter/tree/master/starter  
+
+Beside from that, the development of this app was achieved by the owner of this github account. 
